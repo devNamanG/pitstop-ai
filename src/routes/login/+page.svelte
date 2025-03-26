@@ -1,6 +1,5 @@
 <script lang="ts">
   import CardAnimatedBorder from "$lib/components/magic/CardAnimatedBorder/CardAnimatedBorder.svelte";
-  import EncryptButton from "$lib/components/magic/EncryptButton/EncryptButton.svelte";
   import FlipText from "$lib/components/magic/FlipText";
   import InputSpotlightBorder from "$lib/components/magic/InputSpotlightBorder/InputSpotlightBorder.svelte";
 </script>

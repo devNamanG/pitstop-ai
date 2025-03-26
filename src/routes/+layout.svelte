@@ -1,6 +1,5 @@
 <script lang="ts">
-  let { children, layoutData }: { children: Snippet; layoutData: LayoutData } =
-    $props();
+  let { children, data }: { children: Snippet; data: LayoutData } = $props();
   import { onMount } from "svelte";
   import { session } from "$lib/session";
   import { goto } from "$app/navigation";
@@ -12,8 +11,8 @@
   import type { LayoutData } from "./$types";
   import type { Snippet } from "svelte";
 
-  let loading: boolean = true;
-  let loggedIn: boolean = false;
+  let loading: boolean = $state(true);
+  let loggedIn: boolean = $state(false);
 
   session.subscribe((cur: any) => {
     loading = cur?.loading;
@@ -21,7 +20,7 @@
   });
 
   onMount(async () => {
-    const user: any = await layoutData.getAuthUser();
+    const user: any = await data.getAuthUser();
 
     const loggedIn = !!user && user?.emailVerified;
     session.update((cur: any) => {

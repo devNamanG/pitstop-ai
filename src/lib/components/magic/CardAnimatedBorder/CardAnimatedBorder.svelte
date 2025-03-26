@@ -1,3 +1,9 @@
+<script lang="ts">
+  import type { Snippet } from "svelte";
+
+  let {title, body}: {title: Snippet, body: Snippet,} = $props()
+</script>
+
 <div class="w-full max-w-[350px]">
   <div
     class="group relative grid overflow-hidden rounded-xl px-4 py-5 shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset] transition-colors duration-200"
@@ -11,11 +17,12 @@
       class="backdrop absolute inset-px rounded-[11px] bg-neutral-950 transition-colors duration-200"
     ></span>
     <div class="space-y-2 z-10">
-      <h3 class="text-xl font-semibold text-neutral-200">Luxe</h3>
-      <p class="text-sm leading-[1.5] text-neutral-400">
-        Explore the new website that simplifies the creation of sophisticated
-        dark mode components.
-      </p>
+      <h3 class="text-xl font-semibold text-neutral-200">
+        {@render title()}
+      </h3>
+      <div class="text-sm leading-[1.5] text-neutral-400">
+        {@render body()}
+    </div>
     </div>
   </div>
 </div>

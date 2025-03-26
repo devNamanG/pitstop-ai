@@ -1,9 +1,14 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
   import ButtonMagnetic from "$lib/components/magic/ButtonMagnetic/ButtonMagnetic.svelte";
   import CardAnimatedBorder from "$lib/components/magic/CardAnimatedBorder/CardAnimatedBorder.svelte";
 
   import FlipText from "$lib/components/magic/FlipText";
   import InputSpotlightBorder from "$lib/components/magic/InputSpotlightBorder/InputSpotlightBorder.svelte";
+  import { loginWithMail } from "$lib/firebase/auth";
+
+  let email = $state("");
+  let password = $state("");
 </script>
 
 <div class="w-full h-full flex items-center justify-center">
@@ -23,15 +28,33 @@
             />
 
             <label for="Email" class="p-2"> Enter Your Email Id : </label>
-            <InputSpotlightBorder inp="Enter Email ID" type="text"
+            <InputSpotlightBorder
+              bind:val={email}
+              inp="Enter Email ID"
+              type="text"
             ></InputSpotlightBorder>
             <br />
             <label for="password" class="p-2"> Enter Password : </label>
 
-            <InputSpotlightBorder inp="Enter Your Password" type="password"
+            <InputSpotlightBorder
+              bind:val={password}
+              inp="Enter Your Password"
+              type="password"
             ></InputSpotlightBorder>
             <br />
-            <ButtonMagnetic btnval="Login"></ButtonMagnetic>
+            <ButtonMagnetic
+              onclick={async () => {
+                console.log("login clicked");
+                try {
+                  await loginWithMail(email, password);
+                  goto("/chat");
+                } catch (e) {
+                  console.log(e);
+                  alert("An error occurred while logging in!");
+                }
+              }}
+              btnval="Login"
+            ></ButtonMagnetic>
           </div>
           <div>
             <img src="/login-img.png" alt="login" class="w-[500px] h-[500px]" />

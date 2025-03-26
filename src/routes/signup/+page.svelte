@@ -1,9 +1,15 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
   import ButtonMagnetic from "$lib/components/magic/ButtonMagnetic/ButtonMagnetic.svelte";
   import CardAnimatedBorder from "$lib/components/magic/CardAnimatedBorder/CardAnimatedBorder.svelte";
 
   import FlipText from "$lib/components/magic/FlipText";
   import InputSpotlightBorder from "$lib/components/magic/InputSpotlightBorder/InputSpotlightBorder.svelte";
+  import { handleRegister } from "$lib/firebase/auth";
+
+  let email = $state("");
+  let password = $state("");
+  let name = $state("");
 </script>
 
 <div class="w-full h-full flex items-center justify-center">
@@ -11,14 +17,14 @@
     <CardAnimatedBorder>
       {#snippet body()}
         <div class="flex justify-between">
-          <div class="flex flex-col items-start p-10">
+          <div class="flex flex-col w-full items-start p-10">
             <FlipText
               class="text-xs font-bold tracking-[-0.1em] text-black dark:text-white md:text-4xl md:leading-[5rem]"
               word="Lets get you signed up!!!"
             />
 
             <label for="name" class="p-2"> Enter Your Name : </label>
-            <InputSpotlightBorder inp="Enter Name" type="text"
+            <InputSpotlightBorder class="w-1/2" inp="Enter Name" type="text"
             ></InputSpotlightBorder>
             <br />
 
@@ -31,7 +37,19 @@
             <InputSpotlightBorder inp="Enter Your Password" type="password"
             ></InputSpotlightBorder>
             <br />
-            <ButtonMagnetic btnval="Signup"></ButtonMagnetic>
+            <ButtonMagnetic
+              onclick={async () => {
+                console.log("Signup clicked");
+                try {
+                  await handleRegister(email, password, name);
+                  goto("/chat");
+                } catch (e) {
+                  console.log(e);
+                  alert("An error occurred while signing up!");
+                }
+              }}
+              btnval="Signup"
+            ></ButtonMagnetic>
           </div>
           <div>
             <img src="/login-img.png" alt="login" class="w-[500px] h-[500px]" />

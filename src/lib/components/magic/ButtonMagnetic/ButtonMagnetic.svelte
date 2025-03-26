@@ -24,6 +24,8 @@
     position.x = 0;
     position.y = 0;
   };
+
+  export let onclick: () => void;
 </script>
 
 <Motion
@@ -39,11 +41,12 @@
   <button
     class={cn(
       "relative rounded-xl bg-white px-4 py-2 text-sm font-semibold text-black",
-      _class
+      _class,
     )}
     bind:this={ref}
     onmousemove={handleMouseMove}
     onmouseleave={handleMouseLeave}
+    {onclick}
     use:motion
   >
     <slot>{btnval}</slot>

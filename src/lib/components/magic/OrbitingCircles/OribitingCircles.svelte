@@ -16,7 +16,7 @@
         class="pointer-events-none absolute inset-0 h-full w-full"
     >
         <circle
-            class="stroke-black/10 stroke-1 dark:stroke-white/10"
+            class="stroke-black/10 stroke-1 dark:stroke-white/50"
             cx="50%"
             cy="50%"
             r={radius}

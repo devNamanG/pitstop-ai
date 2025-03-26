@@ -31,7 +31,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      magicslide: {
+        to: {
+          transform: "translate(calc(100cqw - 100%), 0)",
+        },
+      },
       "animation": {
+        "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
+        magicslide: "magicslide var(--speed) ease-in-out infinite alternate",
         "flip": "flip 6s infinite steps(2, end)",
         "kitrotate": "kitrotate 3s linear infinite both",
         shine: "shine 2s linear infinite",
@@ -48,9 +55,34 @@ const config: Config = {
         // 'text-gradient': 'text-gradient 1.5s linear infinite',
         'background-shine': 'background-shine 2s linear infinite',
         'pulse-slow': 'pulse 6s infinite cubic-bezier(0.4, 0, 0.6, 1)',
+        orbit: "orbit calc(var(--duration)*1s) linear infinite",
         grid: "grid 15s linear infinite",
       },
       "keyframes": {
+        "spin-around": {
+          "0%": {
+            transform: "translateZ(0) rotate(0)",
+          },
+          "15%, 35%": {
+            transform: "translateZ(0) rotate(90deg)",
+          },
+          "65%, 85%": {
+            transform: "translateZ(0) rotate(270deg)",
+          },
+          "100%": {
+            transform: "translateZ(0) rotate(360deg)",
+          },
+        },
+        orbit: {
+          "0%": {
+            transform:
+              "rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)",
+          },
+          "100%": {
+            transform:
+              "rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)",
+          },
+        },
         spin: {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },

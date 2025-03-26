@@ -13,7 +13,6 @@ children: [
 item: int-for-the-index-of-this-item,
 level: int-for-the-level-of-this-item,
 title: "Title for this item, the question",
-stuff recursively"
 }
 ]
 }
@@ -27,8 +26,8 @@ STRICTLY STICK to the above template and strictly adhere to these constraints
 export async function generate(content: string, onNewContent: (content: string) => void) {
   const ollama = new Ollama()
   const response = await ollama.chat({
-    // model: "granite3.1-dense:2b",
-    model: "gemma3:1b",
+    model: "granite3.1-dense:2b",
+//    model: "gemma3:1b",
     messages: [{
       role: "user",
       content: content + PROMPT,

@@ -3,6 +3,7 @@
   import OrbitingCircles from "$lib/components/magic/OrbitingCircles";
   import FlipText from "$lib/components/magic/FlipText/FlipText.svelte";
   import ShimmerButton from "$lib/components/ShimmerButton/ShimmerButton.svelte";
+  import { goto } from "$app/navigation";
   let className: any = "";
   export { className as class };
 </script>
@@ -87,9 +88,8 @@
     >
       Sign in to continue or create an account.
     </div>
-    <div class="w-full flex items-center justify-center gap-20 py-3">
-      <ShimmerButton>LOGIN</ShimmerButton>
-      <ShimmerButton>REGISTER</ShimmerButton>
-    </div>
+  <div class="w-full flex items-center justify-center gap-20">
+    <ShimmerButton onclick={() => goto("/login")}>LOGIN</ShimmerButton>
+    <ShimmerButton onclick={() => goto("/signup")}>REGISTER</ShimmerButton>
   </div>
 </div>

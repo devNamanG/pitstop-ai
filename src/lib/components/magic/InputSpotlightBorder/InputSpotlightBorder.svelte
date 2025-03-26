@@ -1,12 +1,15 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import { Motion, useMotionTemplate, useMotionValue } from "svelte-motion";
-  let { inp, type }: { inp: string; type: string } = $props();
   let divRef: HTMLInputElement;
   let isFocused = false;
   let positionX = useMotionValue(0);
   let positionY = useMotionValue(0);
   let opacity = 0;
+  export let val = "";
+  export let inp: string;
+  export let type: string;
+  export let className: String;
+  export { className as class };
   let handleMouseMove = (e: MouseEvent) => {
     const rect = divRef.getBoundingClientRect();
     // console.log("rect", rect);
@@ -34,13 +37,14 @@
   });
 </script>
 
-<div class="relative w-52">
+<div class={`relative w-52 ${className}`}>
   <input
     on:mousemove={handleMouseMove}
     on:focus={handleFocus}
     on:blur={handleBlur}
     on:mouseenter={handleMouseEnter}
     on:mouseleave={handleMouseLeave}
+    bind:value={val}
     autocomplete="off"
     placeholder={inp}
     {type}

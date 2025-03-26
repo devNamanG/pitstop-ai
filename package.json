@@ -22,6 +22,7 @@
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.0.16",
+		"firebase": "^11.5.0",
 		"mode-watcher": "^0.5.1",
 		"ollama": "^0.5.14",
 		"svelte-motion": "^0.12.2",

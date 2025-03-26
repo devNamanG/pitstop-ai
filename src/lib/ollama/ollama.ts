@@ -5,17 +5,17 @@ const PROMPT = `. Create an FTA tree with very simple probable causes for the is
 This is the format of the json file:
 
 {
-"root": {
-"title":dontle of the root node",
-},
+question: "the prompt that was given to you",
 children: [
 {
-item: int-for-the-index-of-this-item,
-level: int-for-the-level-of-this-item,
-title: "Title for this item, the question",
+{
+question: "The question to ask for this item",
+children: [...the children in similar format for question to ask related to this question...],
+}
 }
 ]
 }
+
 STRICTLY STICK to the above template and strictly adhere to these constraints
 1. Root node title: 'Issue title'
 2. Maximum levels: 3 (including the root)
@@ -23,7 +23,20 @@ STRICTLY STICK to the above template and strictly adhere to these constraints
 4. Questions should focus on symptoms related to brake problems, not conclusions or potential causes.
 5. DO NOT INCLUDE ANY CONCLUSIONS OR ANSWERS`
 
-export async function generate(content: string, onNewContent: (content: string) => void) {
+// {
+// "root": {
+//   "title":dontle of the root node",
+//   },
+//   children: [
+//   {
+//   item: int-for-the-index-of-this-item,
+//   level: int-for-the-level-of-this-item,
+//   question: "The question for this item",
+//   }
+//   ]
+//   }
+
+export async function generate(content: string, onNewContent: (content: string) => void, onComplete: () => void) {
   const ollama = new Ollama()
   const response = await ollama.chat({
     model: "granite3.1-dense:2b",
@@ -38,4 +51,6 @@ export async function generate(content: string, onNewContent: (content: string) 
   for await (const part of response) {
     onNewContent(part.message.content)
   }
+
+  onComplete()
 }

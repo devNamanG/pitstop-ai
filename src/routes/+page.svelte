@@ -23,7 +23,7 @@
     <div
       class={cn(
         "relative flex h-[350px] w-full items-center justify-center overflow-hidden rounded-xl md:shadow-xl",
-        className,
+        className
       )}
     >
       <span
@@ -88,8 +88,9 @@
     >
       Sign in to continue or create an account.
     </div>
-  <div class="w-full flex items-center justify-center gap-20">
-    <ShimmerButton onclick={() => goto("/login")}>LOGIN</ShimmerButton>
-    <ShimmerButton onclick={() => goto("/signup")}>REGISTER</ShimmerButton>
+    <div class="w-full flex items-center justify-center gap-20">
+      <ShimmerButton onclick={() => goto("/login")}>LOGIN</ShimmerButton>
+      <ShimmerButton onclick={() => goto("/signup")}>REGISTER</ShimmerButton>
+    </div>
   </div>
 </div>

@@ -23,6 +23,7 @@
 	"dependencies": {
 		"@tailwindcss/vite": "^4.0.16",
 		"mode-watcher": "^0.5.1",
+		"ollama": "^0.5.14",
 		"svelte-motion": "^0.12.2",
 		"tailwindcss": "^4.0.16"
 	}

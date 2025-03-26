@@ -8,9 +8,11 @@
     export let background = "rgba(0, 0, 0, 1)";
     let className: any = "";
     export { className as class };
+    export let onclick: () => void;
 </script>
 
 <button
+    {onclick}
     style:--spread="90deg"
     style:--shimmer-color={shimmerColor}
     style:--radius={borderRadius}

@@ -4,7 +4,7 @@
   let { title, body }: { title?: Snippet; body: Snippet } = $props();
 </script>
 
-<div class="w-full h-full">
+<div>
   <div
     class="group relative grid overflow-hidden rounded-xl px-4 py-5 shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset] transition-colors duration-200"
   >

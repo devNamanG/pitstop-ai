@@ -80,3 +80,14 @@ The AI-driven reasoning layer uses **Ollama** with IBM’s **Granite 3.1 MoE** m
 - Fault Tree diagram
 - Probable root cause: Ignition coil failure
 - Supporting reasoning from manual sections
+
+## Tech Stack Summary
+
+- Frontend: SvelteKit + TypeScript
+- Backend: Firebase (Firestore + Auth)
+- AI Runtime: Ollama
+- Model: IBM Granite 3.1 MoE
+- Domain: Automotive diagnostics, Reliability Engineering
+
+## License
+MIT

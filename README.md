@@ -1,38 +1,82 @@
-# sv
+# Pitstop AI 🚗⚙️
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Pitstop AI is an AI-powered diagnostic assistant for automotive troubleshooting.  
+It analyzes technical manuals and vehicle symptoms to generate structured **Fault Trees** and performs **Fault Tree Analysis (FTA)** to determine the most probable root cause of a failure.
 
-## Creating a project
+Built with a modern web stack and local AI inference, Pitstop AI bridges traditional engineering diagnostics with generative AI.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## 🚀 Overview
 
-```bash
-# create a new project in the current directory
-npx sv create
+Pitstop AI allows users to:
 
-# create a new project in my-app
-npx sv create my-app
-```
+- Upload or reference **technical manuals**
+- Input observed **vehicle symptoms**
+- Automatically generate a structured **Fault Tree**
+- Perform **Fault Tree Analysis (FTA)**
+- Identify the **most probable root cause**
+- Visualize failure paths logically and hierarchically
 
-## Developing
+The AI-driven reasoning layer uses **Ollama** with IBM’s **Granite 3.1 MoE** model for structured fault modeling.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+---
 
-```bash
-npm run dev
+## 🏗️ Architecture
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### Frontend
+- **SvelteKit**
+- **TypeScript**
+- Reactive UI for manual ingestion, symptom entry, and fault visualization
 
-## Building
+### Backend
+- **Firebase**
+  - Firestore (structured storage)
+  - Firebase Auth (optional user access)
+  - Firebase Hosting / Cloud Functions (if applicable)
 
-To create a production version of your app:
+### AI Engine
+- **Ollama** (local model runner)
+- **IBM Granite 3.1 MoE**
+  - Generates structured Fault Trees
+  - Performs analytical reasoning for FTA
+  - Produces root cause evaluation
 
-```bash
-npm run build
-```
+---
 
-You can preview the production build with `npm run preview`.
+## 🧠 How It Works
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+1. **Manual Ingestion**
+   - User provides a technical manual (PDF/text)
+   - Relevant sections are parsed and structured
+
+2. **Symptom Input**
+   - User enters observed failure symptoms
+
+3. **Fault Tree Generation**
+   - The system constructs a hierarchical Fault Tree using Granite 3.1 MoE
+   - Nodes represent possible failure modes
+   - Logical gates (AND/OR) are defined
+
+4. **Fault Tree Analysis (FTA)**
+   - Bottom-up analysis determines:
+     - Minimal cut sets
+     - Probable root causes
+     - Critical failure paths
+
+5. **Output**
+   - Visualized Fault Tree
+   - Ranked root causes
+   - Explanation of reasoning
+
+---
+
+## 📊 Example Use Case
+
+**Input Symptoms:**
+- Engine cranks but does not start
+- Fuel pump audible
+- No spark detected
+
+**Output:**
+- Fault Tree diagram
+- Probable root cause: Ignition coil failure
+- Supporting reasoning from manual sections
